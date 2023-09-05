@@ -48,5 +48,26 @@ module.exports = {
     }
 
     res.json(json);
+  },
+
+  update: async (req, res) => {
+    let json = { error: '', result: {} };
+
+    let codigo = req.params.codigo;
+    let modelo = req.body.modelo;
+    let placa = req.body.placa;
+
+    if (codigo && modelo && placa) {
+      await carService.update(codigo, modelo, placa);
+      json.result = {
+        codigo,
+        modelo,
+        placa
+      };
+    } else {
+      json.error = 'fields not sent';
+    }
+
+    res.json(json);
   }
 };

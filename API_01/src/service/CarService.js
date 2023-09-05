@@ -30,5 +30,15 @@ module.exports = {
           resolve(results.insertcodigo);
       });
     });
+  },
+  update: (codigo, modelo, placa) => {
+    return new Promise((resolve, reject) => {
+      db.query('UPDATE cars SET modelo = ?, placa = ? WHERE codigo = ?', 
+        [modelo, placa, codigo], 
+        (error, results) => {
+          if (error) { reject(error); return; }
+          resolve(results);
+      });
+    });
   }
 };
