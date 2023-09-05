@@ -69,5 +69,13 @@ module.exports = {
     }
 
     res.json(json);
+  },
+  
+  remove: async (req, res) => {
+    let json = { error: '', result: {} };
+
+    await carService.remove(req.params.codigo);
+
+    res.json(json);
   }
 };
