@@ -20,5 +20,15 @@ module.exports = {
         }
       });
     });
+  },
+  insert: (modelo, placa) => {
+    return new Promise((resolve, reject) => {
+      db.query('INSERT INTO cars (modelo, placa) VALUES (?, ?)', 
+        [modelo, placa], 
+        (error, results) => {
+          if (error) { reject(error); return; }
+          resolve(results.insertcodigo);
+      });
+    });
   }
 };
